@@ -14,8 +14,9 @@ const nextConfig = {
   },
   output: 'export',
   trailingSlash: true,
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/Portfolio/' : '',
-  basePath: process.env.NODE_ENV === 'production' ? '/Portfolio' : '',
+  // Dynamically set base path based on repository name
+  assetPrefix: process.env.NODE_ENV === 'production' ? `/${process.env.GITHUB_REPOSITORY?.split('/')[1] || 'Portfolio'}/` : '',
+  basePath: process.env.NODE_ENV === 'production' ? `/${process.env.GITHUB_REPOSITORY?.split('/')[1] || 'Portfolio'}` : '',
   experimental: {
     esmExternals: false,
   },
