@@ -17,6 +17,10 @@ const nextConfig = {
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  output: 'export',
+  trailingSlash: true,
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/Portfolio/' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/Portfolio' : '',
 }
 
 export default withAnalyzer({
