@@ -12,11 +12,6 @@ const nextConfig = {
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  output: 'export',
-  trailingSlash: true,
-  // Use fixed base path for GitHub Pages
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/Portfolio/' : '',
-  basePath: process.env.NODE_ENV === 'production' ? '/Portfolio' : '',
   experimental: {
     esmExternals: false,
   },
