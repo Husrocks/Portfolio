@@ -23,7 +23,7 @@ export default function Hero() {
   ]
 
   // Animated Counter Component
-  const AnimatedCounter = ({ value, suffix = "", duration = 2 }) => {
+  const AnimatedCounter = ({ value, suffix = "", duration = 2 }: { value: number; suffix?: string; duration?: number }) => {
     const count = useMotionValue(0)
     const rounded = useTransform(count, (latest) => Math.round(latest))
     const display = useTransform(rounded, (latest) => `${latest}${suffix}`)
