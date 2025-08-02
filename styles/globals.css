@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Variables for High-Contrast Light Mode */
+:root {
+  --text-primary: #000000;
+  --text-secondary: #1f2937;
+  --text-tertiary: #374151;
+  --text-muted: #4b5563;
+  --text-inverse: #ffffff;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --bg-muted: #e5e7eb;
+  --border-primary: #d1d5db;
+  --border-secondary: #9ca3af;
+  --border-accent: #6b7280;
+  --button-primary-bg: #111827;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: transparent;
+  --button-secondary-text: #111827;
+  --button-secondary-border: #111827;
+  --focus-ring: #3b82f6;
+  --hover-bg: #f3f4f6;
+  --hover-text: #111827;
+}
+
+/* Dark Mode Variables */
+.dark {
+  --text-primary: #ffffff;
+  --text-secondary: #e5e7eb;
+  --text-tertiary: #d1d5db;
+  --text-muted: #9ca3af;
+  --text-inverse: #000000;
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --bg-muted: #475569;
+  --border-primary: #475569;
+  --border-secondary: #64748b;
+  --border-accent: #94a3b8;
+  --button-primary-bg: #ffffff;
+  --button-primary-text: #000000;
+  --button-secondary-bg: transparent;
+  --button-secondary-text: #ffffff;
+  --button-secondary-border: #ffffff;
+  --focus-ring: #60a5fa;
+  --hover-bg: #334155;
+  --hover-text: #ffffff;
+}
+
+@layer utilities {
+  .text-high-contrast { color: var(--text-primary) !important; }
+  .text-medium-contrast { color: var(--text-secondary) !important; }
+  .text-subtle-contrast { color: var(--text-tertiary) !important; }
+  .text-muted-contrast { color: var(--text-muted) !important; }
+  .bg-subtle { background-color: var(--bg-secondary) !important; }
+  .bg-muted-contrast { background-color: var(--bg-tertiary) !important; }
+  .btn-primary { background-color: var(--button-primary-bg) !important; color: var(--button-primary-text) !important; border: none !important; }
+  .btn-secondary { background-color: var(--button-secondary-bg) !important; color: var(--button-secondary-text) !important; border: 1px solid var(--button-secondary-border) !important; }
+}
+
+@layer base {
+  body { background-color: var(--bg-primary) !important; color: var(--text-primary) !important; }
+  h1, h2, h3, h4, h5, h6 { color: var(--text-primary) !important; }
+  p { color: var(--text-secondary) !important; }
+  button { color: var(--text-primary) !important; }
+  a { color: var(--text-primary) !important; }
+  
+  /* Card and component overrides */
+  .card { background-color: var(--bg-secondary) !important; color: var(--text-primary) !important; }
+  .card-header { background-color: var(--bg-secondary) !important; }
+  .card-content { background-color: var(--bg-secondary) !important; }
+  
+  /* Form elements */
+  input, textarea, select { background-color: var(--bg-secondary) !important; color: var(--text-primary) !important; border-color: var(--border-primary) !important; }
+  
+  /* Navigation elements */
+  nav { background-color: var(--bg-secondary) !important; }
+  .navigation { background-color: var(--bg-secondary) !important; }
+  
+  /* Footer */
+  footer { background-color: var(--bg-secondary) !important; color: var(--text-primary) !important; }
+  
+  /* Container overrides for better contrast */
+  .container { background-color: var(--bg-primary) !important; }
+  .container button { color: var(--text-primary) !important; background-color: var(--button-primary-bg) !important; }
+  .container .btn-primary { background-color: var(--button-primary-bg) !important; color: var(--button-primary-text) !important; }
+  .container .btn-secondary { background-color: var(--button-secondary-bg) !important; color: var(--button-secondary-text) !important; border-color: var(--button-secondary-border) !important; }
+}
+
+/* 3D Perspective and Flip Effects */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Custom animations */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-secondary);
+}
