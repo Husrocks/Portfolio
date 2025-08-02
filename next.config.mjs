@@ -14,9 +14,9 @@ const nextConfig = {
   },
   output: 'export',
   trailingSlash: true,
-  // Dynamically set base path based on repository name
-  assetPrefix: process.env.NODE_ENV === 'production' ? `/${process.env.GITHUB_REPOSITORY?.split('/')[1] || 'Portfolio'}/` : '',
-  basePath: process.env.NODE_ENV === 'production' ? `/${process.env.GITHUB_REPOSITORY?.split('/')[1] || 'Portfolio'}` : '',
+  // Use fixed base path for GitHub Pages
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/Portfolio/' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/Portfolio' : '',
   experimental: {
     esmExternals: false,
   },
