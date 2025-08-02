@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Hero from "@/components/sections/hero"
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
@@ -23,17 +24,12 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-4">Portfolio Test</h1>
-        <p className="text-lg">If you can see this, the page is working!</p>
-        <div className="mt-8 p-4 bg-gray-800 rounded">
-          <h2 className="text-2xl mb-2">Debug Info:</h2>
-          <p>Page loaded successfully</p>
-          <p>CSS is working</p>
-          <p>JavaScript is working</p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-background text-foreground">
+      <main className="relative">
+        <section id="home" className="relative z-10">
+          <Hero />
+        </section>
+      </main>
     </div>
   )
 }
