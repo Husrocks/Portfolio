@@ -89,13 +89,10 @@ export default function About() {
                 transition: { duration: 0.3 }
               }}
             >
-              <Image
+              <img
                 src="/images/about-photo.jpg"
                 alt="Hussnain Bashir - Full Stack Developer"
-                fill
-                className="object-cover object-center"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
+                className="w-full h-full object-cover object-center"
               />
               <motion.div 
                 className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"

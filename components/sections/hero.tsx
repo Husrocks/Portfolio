@@ -141,13 +141,10 @@ export default function Hero() {
               }}
             >
               <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl glass-card border border-white/20 hover:border-white/40 transition-all duration-300">
-                <Image
+                <img
                   src="/images/hero-photo.jpg"
                   alt="Hussnain Bashir - Full Stack Developer"
-                  fill
-                  className="object-cover object-center"
-                  priority
-                  sizes="(max-width: 768px) 320px, (max-width: 1200px) 384px, 384px"
+                  className="w-full h-full object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
