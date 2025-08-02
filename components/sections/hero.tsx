@@ -142,7 +142,7 @@ export default function Hero() {
             >
               <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl glass-card border border-white/20 hover:border-white/40 transition-all duration-300">
                 <img
-                  src="/images/hero-photo.jpg"
+                  src={process.env.NODE_ENV === 'production' ? '/Portfolio/images/hero-photo.jpg' : '/images/hero-photo.jpg'}
                   alt="Hussnain Bashir - Full Stack Developer"
                   className="w-full h-full object-cover object-center"
                 />

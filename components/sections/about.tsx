@@ -90,7 +90,7 @@ export default function About() {
               }}
             >
               <img
-                src="/images/about-photo.jpg"
+                src={process.env.NODE_ENV === 'production' ? '/Portfolio/images/about-photo.jpg' : '/images/about-photo.jpg'}
                 alt="Hussnain Bashir - Full Stack Developer"
                 className="w-full h-full object-cover object-center"
               />
