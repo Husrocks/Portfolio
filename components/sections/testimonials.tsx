@@ -1,102 +1,96 @@
 "use client"
 
+import { FadeUp } from "@/components/ui/FadeUp"
+import { SlideIn } from "@/components/ui/SlideIn"
 import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Star, Quote } from "lucide-react"
-import Image from "next/image"
+import { testimonials } from "@/data/testimonials"
+
+function TestimonialCard({ testimonial }: { testimonial: (typeof testimonials)[0] }) {
+  return (
+    <motion.div
+      whileHover={{ y: -8, boxShadow: "0 12px 32px rgba(0,0,0,0.4)" }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className="shrink-0 w-[360px] md:w-[440px] mx-4 p-6 rounded-[4px] cursor-grab active:cursor-grabbing"
+      style={{
+        backgroundColor: "var(--surface)",
+        border: "1px solid var(--border)",
+      }}
+    >
+      <blockquote
+        className="mb-5"
+        style={{
+          fontFamily: "var(--font-display)",
+          fontSize: "1.25rem",
+          fontStyle: "italic",
+          fontWeight: 700,
+          lineHeight: 1.55,
+          color: "#E8E4DC",
+          letterSpacing: "-0.01em",
+        }}
+      >
+        &ldquo;{testimonial.quote}&rdquo;
+      </blockquote>
+      <footer>
+        <div
+          className="font-semibold text-[var(--fg)]"
+          style={{ fontFamily: "var(--font-body)", fontSize: "0.9375rem" }}
+        >
+          {testimonial.author}
+        </div>
+        <div
+          className="text-[var(--fg-muted)]"
+          style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.06em", marginTop: "2px" }}
+        >
+          {testimonial.title} · {testimonial.company}
+        </div>
+      </footer>
+    </motion.div>
+  )
+}
 
 export default function Testimonials() {
-  const testimonials = [
-    {
-      name: "Sarah Johnson",
-      role: "Product Manager",
-      company: "TechCorp",
-      image: "/placeholder-user.jpg",
-      content: "Hussnain is an exceptional developer who consistently delivers high-quality work. His attention to detail and problem-solving skills are outstanding.",
-      rating: 5,
-    },
-    {
-      name: "Michael Chen",
-      role: "Senior Developer",
-      company: "InnovateLab",
-      image: "/placeholder-user.jpg",
-      content: "Working with Hussnain was a great experience. He's not only technically skilled but also great at communication and collaboration.",
-      rating: 5,
-    },
-    {
-      name: "Emily Rodriguez",
-      role: "UX Designer",
-      company: "DesignStudio",
-      image: "/placeholder-user.jpg",
-      content: "Hussnain's ability to translate design requirements into functional code is impressive. He always goes above and beyond expectations.",
-      rating: 5,
-    },
-  ]
+  // Duplicate cards for seamless loop
+  const doubled = [...testimonials, ...testimonials]
 
   return (
-    <div className="container mx-auto px-4 py-20">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="text-center mb-16"
-      >
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground dark:text-foreground mb-4">
-          What People <span className="text-primary">Say</span>
-        </h2>
-        <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
-        <p className="text-xl text-muted-foreground dark:text-muted-foreground max-w-3xl mx-auto">
-          Here's what colleagues and clients have to say about working with me.
-        </p>
-      </motion.div>
+    <section
+      id="testimonials"
+      className="dark-section py-24 md:py-32 overflow-hidden"
+      style={{ backgroundColor: "#111110" }}
+    >
+      <div className="content-grid mb-12">
+        <SlideIn from="left">
+          <p className="section-label" style={{ color: "var(--fg-muted)" }}>
+            [ 06 — What Clients Say ]
+          </p>
+        </SlideIn>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {testimonials.map((testimonial, index) => (
-          <motion.div
-            key={testimonial.name}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: index * 0.2 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -10 }}
-            className="group"
-          >
-            <Card className="h-full bg-card dark:bg-card border-border dark:border-border hover:shadow-xl transition-all duration-300">
-              <CardContent className="p-6">
-                <div className="flex items-center mb-4">
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-1 mb-2">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                      ))}
-                    </div>
-                    <h4 className="font-semibold text-foreground dark:text-foreground">
-                      {testimonial.name}
-                    </h4>
-                    <p className="text-sm text-muted-foreground dark:text-muted-foreground">
-                      {testimonial.role} at {testimonial.company}
-                    </p>
-                  </div>
-                  <div className="relative">
-                    <Image
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      width={48}
-                      height={48}
-                      className="rounded-full object-cover"
-                    />
-                    <Quote className="absolute -top-2 -right-2 w-4 h-4 text-primary bg-background rounded-full p-0.5" />
-                  </div>
-                </div>
-                <p className="text-muted-foreground dark:text-muted-foreground leading-relaxed">
-                  "{testimonial.content}"
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
+      {/* Marquee carousel — desktop */}
+      <FadeUp delay={0.1}>
+        <div
+          className="hidden md:block overflow-hidden relative"
+          role="region"
+          aria-label="Client testimonials"
+          style={{
+            maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+            WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)"
+          }}
+        >
+          <div className="marquee-track flex" aria-hidden="false">
+            {doubled.map((t, i) => (
+              <TestimonialCard key={`${t.id}-${i}`} testimonial={t} />
+            ))}
+          </div>
+        </div>
+      </FadeUp>
+
+      {/* Mobile: static vertical stack */}
+      <div className="md:hidden content-grid space-y-5">
+        {testimonials.map((t) => (
+          <TestimonialCard key={t.id} testimonial={t} />
         ))}
       </div>
-    </div>
+    </section>
   )
-} 
+}

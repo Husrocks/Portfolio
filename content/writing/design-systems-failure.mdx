@@ -1,0 +1,41 @@
+---
+title: "Why Your Design System is Failing (And What to Do About It)"
+date: "2024-11-14"
+excerpt: "Most design systems die not from lack of effort, but from the wrong kind of effort. Here's how to build one that actually survives contact with a real product team."
+tags: ["design systems", "product design", "engineering"]
+readingTime: "8 min read"
+draft: false
+---
+
+Most design systems don't fail because they were built badly. They fail because they were built *in isolation* — a parallel track to the actual product, maintained by a separate team, adopted through mandate rather than incentive.
+
+I've seen this pattern play out at companies of every size. A small team builds something beautiful, documents it meticulously, and then watches as the rest of the organization quietly ignores it in favor of building their own components from scratch.
+
+## The Two Failure Modes
+
+There are two common ways a design system dies:
+
+**The Museum Problem.** The system is too perfect to use. Every component has 47 variants, exhaustive documentation, and a changelog going back three years. But because it's treated as a sacred artifact rather than a living tool, teams are afraid to touch it, extend it, or — god forbid — deviate from it when a product requirement demands it.
+
+**The Neglect Problem.** The opposite. The system gets built, shipped, and immediately deprioritized. It covers the basics — buttons, typography, spacing — but the moment a team needs anything more complex, they build locally and promise to "contribute it back later." They never do.
+
+## What Actually Works
+
+The systems I've seen survive long-term share one characteristic: **they treat adoption as a product problem, not a documentation problem.**
+
+That means:
+- Investing in a great contributor workflow so teams can propose additions
+- Making the system easier to use than not using it
+- Building relationships with the teams that consume the system, not just the ones that build it
+
+The best design system I ever worked on had a simple rule: if a component wasn't being used by at least two product teams within 30 days of shipping, it got removed. Ruthless, but it kept the surface area small and everything that remained was genuinely useful.
+
+## A Simple Starting Point
+
+If you're starting from scratch or trying to revive a struggling system, here's where I'd focus first:
+
+1. **Ship fast, document later.** A few usable primitives beat a comprehensive-but-inaccessible library every time.
+2. **Pick your consumers first.** Build explicitly for 2-3 teams who will use it, and build what they need.
+3. **Measure adoption, not completeness.** The right metric isn't "how many components do we have" — it's "what percentage of new UI is built using system components."
+
+A design system is a product. Build it like one.

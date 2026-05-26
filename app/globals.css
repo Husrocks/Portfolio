@@ -2,229 +2,327 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 84% 4.9%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --radius: 0.5rem;
-  }
+/* ─────────────────────────────────────────────────────────────
+   NOCTURNAL EDITORIAL — CSS Design Tokens
+   Light sections use :root defaults
+   Dark sections apply .dark-section overrides
+───────────────────────────────────────────────────────────── */
+
+:root {
+  --bg: #F4F1EC;
+  --fg: #1C1C1A;
+  --fg-muted: #888580;
+  --accent: #D4952A;
+  --surface: #EDEAE4;
+  --border: #D8D4CC;
+  --mono-bg: #2A2A28;
+  --mono-fg: #C9C4B8;
+  --radius: 0.25rem;
 }
+
+.dark-section {
+  --bg: #111110;
+  --fg: #E8E4DC;
+  --fg-muted: #888580;
+  --surface: #1C1C1A;
+  --border: #2A2A28;
+  --mono-bg: #1E1E1C;
+  --mono-fg: #A8A49C;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   BASE STYLES
+───────────────────────────────────────────────────────────── */
 
 @layer base {
   * {
-    @apply border-border;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
   body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body, "Syne", system-ui, sans-serif);
     font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  
-  /* Typography System */
-  h1 {
-    font-size: 4rem;
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+
+  /* Focus rings — amber, accessible */
+  *:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
   }
-  
-  h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
-  }
-  
-  h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    line-height: 1.3;
-  }
-  
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 2.5rem;
-    }
-    h2 {
-      font-size: 2rem;
-    }
-    h3 {
-      font-size: 1.25rem;
-    }
-  }
-  
-  /* Custom scrollbar styling */
+
+  /* Custom scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
-  
   ::-webkit-scrollbar-track {
-    background: hsl(var(--background));
+    background: var(--bg);
   }
-  
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--muted-foreground));
-    border-radius: 4px;
+    background: var(--border);
+    border-radius: 3px;
   }
-  
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--foreground));
+    background: var(--fg-muted);
   }
-  
-  /* Firefox scrollbar */
   * {
     scrollbar-width: thin;
-    scrollbar-color: hsl(var(--muted-foreground)) hsl(var(--background));
-  }
-  
-  /* Focus indicators for keyboard navigation */
-  *:focus-visible {
-    outline: 2px solid hsl(var(--primary));
-    outline-offset: 2px;
-    border-radius: 4px;
-  }
-  
-  /* Skip to main content link for accessibility */
-  .skip-link {
-    position: absolute;
-    top: -40px;
-    left: 6px;
-    background: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
-    padding: 8px;
-    text-decoration: none;
-    border-radius: 4px;
-    z-index: 1000;
-  }
-  
-  .skip-link:focus {
-    top: 6px;
+    scrollbar-color: var(--border) var(--bg);
   }
 }
 
-html {
-  scroll-behavior: smooth;
+/* ─────────────────────────────────────────────────────────────
+   SKIP LINK (Accessibility)
+───────────────────────────────────────────────────────────── */
+
+.skip-link {
+  position: absolute;
+  top: -56px;
+  left: 16px;
+  padding: 10px 18px;
+  background: var(--accent);
+  color: #1C1C1A;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 9999;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 16px;
 }
 
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
+/* ─────────────────────────────────────────────────────────────
+   SCROLL PROGRESS BAR
+───────────────────────────────────────────────────────────── */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform-origin: left;
+  z-index: 9999;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   TYPOGRAPHY UTILITIES
+───────────────────────────────────────────────────────────── */
+
+.font-display {
+  font-family: var(--font-display, "Cormorant Garamond", Georgia, serif);
+}
+.font-body {
+  font-family: var(--font-body, "Syne", system-ui, sans-serif);
+}
+.font-mono {
+  font-family: var(--font-mono, "JetBrains Mono", Menlo, monospace);
+}
+
+/* Section label style — JetBrains Mono, small, muted */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SECTION LAYOUT HELPERS
+───────────────────────────────────────────────────────────── */
+
+.section-light {
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+.section-dark {
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+.content-grid {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .content-grid {
+    padding-inline: 3rem;
   }
-  100% {
-    transform: translateX(-50%);
-  }
 }
 
-.animate-scroll {
-  animation: scroll 30s linear infinite;
+/* ─────────────────────────────────────────────────────────────
+   ANIMATIONS — Ken Burns
+───────────────────────────────────────────────────────────── */
+
+@keyframes kenBurns {
+  0%   { transform: scale(1.0) translate(0, 0); }
+  100% { transform: scale(1.08) translate(-2%, -1%); }
+}
+@keyframes kenBurnsAlt {
+  0%   { transform: scale(1.06) translate(0, 0); }
+  100% { transform: scale(1.0) translate(1%, 1.5%); }
+}
+@keyframes kenBurnsThird {
+  0%   { transform: scale(1.0) translate(1%, 0); }
+  100% { transform: scale(1.07) translate(-1%, 1%); }
 }
 
-.animate-scroll:hover {
+.ken-burns-1 { animation: kenBurns 18s ease-in-out infinite alternate; }
+.ken-burns-2 { animation: kenBurnsAlt 22s ease-in-out infinite alternate; }
+.ken-burns-3 { animation: kenBurnsThird 26s ease-in-out infinite alternate; }
+
+@keyframes bounceSoft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(12px); }
+}
+
+.animate-bounce-soft {
+  animation: bounceSoft 2.5s ease-in-out infinite;
+}
+
+@keyframes noiseGrain {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+  40% { transform: translate(-5%, 15%); }
+  50% { transform: translate(-10%, 5%); }
+  60% { transform: translate(15%, 0); }
+  70% { transform: translate(0, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+  100% { transform: translate(0, 0); }
+}
+
+.bg-grain {
+  position: relative;
+}
+.bg-grain::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.04"/%3E%3C/svg%3E');
+  animation: noiseGrain 8s steps(10) infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   ANIMATIONS — Marquee (Testimonials + Client Logos)
+───────────────────────────────────────────────────────────── */
+
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 36s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+.marquee-track-slow {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 56s linear infinite;
+}
+.marquee-track-slow:hover {
   animation-play-state: paused;
 }
 
-/* Micro-interactions */
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
+/* ─────────────────────────────────────────────────────────────
+   HOVER UTILITIES
+───────────────────────────────────────────────────────────── */
 
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes typewriter {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-.animate-pulse-slow {
-  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-.animate-bounce-slow {
-  animation: bounce 2s infinite;
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-typewriter {
-  overflow: hidden;
-  border-right: 2px solid hsl(var(--primary));
-  white-space: nowrap;
-  animation: typewriter 3s steps(40, end), blink-caret 0.75s step-end infinite;
-}
-
-@keyframes blink-caret {
-  from, to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: hsl(var(--primary));
-  }
-}
-
-/* Loading states */
-.loading {
+/* Amber underline slide-in hover for links */
+.hover-underline-amber {
   position: relative;
-  overflow: hidden;
+  text-decoration: none;
 }
-
-.loading::after {
-  content: '';
+.hover-underline-amber::after {
+  content: "";
   position: absolute;
-  top: 0;
-  left: -100%;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--accent);
+  transition: width 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.hover-underline-amber:hover::after {
   width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  animation: loading 1.5s infinite;
 }
 
-@keyframes loading {
-  0% {
-    left: -100%;
+/* ─────────────────────────────────────────────────────────────
+   CUSTOM CURSOR — applied via JS, hidden on touch
+───────────────────────────────────────────────────────────── */
+
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
   }
-  100% {
-    left: 100%;
-  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PROSE OVERRIDES (Writing pages)
+───────────────────────────────────────────────────────────── */
+
+.prose {
+  --tw-prose-body: var(--fg);
+  --tw-prose-headings: var(--fg);
+  --tw-prose-links: var(--accent);
+  --tw-prose-code: var(--mono-fg);
+  --tw-prose-pre-bg: var(--mono-bg);
+  --tw-prose-borders: var(--border);
+  font-family: var(--font-body);
+  line-height: 1.8;
+}
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--mono-bg);
+  color: var(--mono-fg);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+}
+.prose pre {
+  background: var(--mono-bg) !important;
+  border: 1px solid var(--border);
+}
+.prose a {
+  color: var(--accent);
+  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  transition: text-decoration-color 0.2s;
+}
+.prose a:hover {
+  text-decoration-color: var(--accent);
 }

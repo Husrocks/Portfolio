@@ -1,0 +1,46 @@
+---
+title: "Building in Public: What I Learned Shipping an Open Source UI Library"
+date: "2024-06-22"
+excerpt: "atlas-ui started as an internal tool. Eighteen months later it has 2,800 GitHub stars and is used in production by teams I've never spoken to. Here's what that process taught me about making things for other developers."
+tags: ["open source", "engineering", "frontend"]
+readingTime: "10 min read"
+draft: false
+---
+
+The first commit to atlas-ui was made at 11pm on a Tuesday, mostly because I was frustrated with every other component library I'd tried that week.
+
+I didn't have a roadmap. I didn't have a name. I had a `Button.tsx` file, a Tailwind config, and a vague sense that the thing I wanted to build didn't exist yet.
+
+Eighteen months later, the library has over 2,800 GitHub stars, is used in production at companies I've never talked to, and has received contributions from 47 people I've never met. None of that was planned, but all of it was the result of specific decisions that I've now thought a lot about.
+
+## What "Building in Public" Actually Means
+
+There's a version of building in public that's essentially content marketing — you post threads about your progress, share screenshots, maintain the perception of transparency while keeping the actual decision-making private.
+
+That's not what I did with atlas-ui. I mean this literally: every architectural decision, every breaking change, every time I went back and removed something because it was wrong — it's all in the commit history and in the GitHub issues.
+
+This matters because it changes your relationship to being wrong. When you're building privately, being wrong is an internal failure. When you're building publicly, being wrong is just... what happened on Wednesday, documented and moved on from. The friction around course-correction drops dramatically.
+
+## The Three Decisions That Compounded
+
+Looking back, three decisions drove almost all of the growth:
+
+**1. Composability over configuration.** I made a deliberate choice not to expose configuration props for visual behavior. No `variant="outlined"` on `Button`. Instead: export the primitive `ButtonBase`, let users compose the variant themselves. This made the library harder to learn but much easier to extend. Teams who needed to deviate from the defaults could, without fighting the library.
+
+**2. Documenting the why, not just the what.** Every component has a "Design notes" section that explains why the component is structured the way it is. Not how to use it — why it works the way it does. This sounds like extra work but it's actually the reason contributors are able to submit good PRs. They understand the design intent, not just the API surface.
+
+**3. Shipping a migration path with every breaking change.** Every major version bump includes a codemod. You run one command and your codebase is updated. This cost me probably 20% more time on each major release, but it meant that adoption didn't stall every time I made a significant change.
+
+## What I'd Do Differently
+
+The documentation was always six months behind the code. There were components in production that weren't documented at all. I thought this was acceptable because the code was self-documenting — it wasn't. Developers don't read source code unless they have to.
+
+If I were starting over, I'd write the documentation before writing the component. Not because documentation-driven development is some principled methodology — but because if I can't explain what a component is for before I build it, I probably don't understand the problem well enough to build it.
+
+## The Unexpected Thing
+
+The most valuable thing that came out of open-sourcing atlas-ui wasn't the stars or the adoption metrics. It was the issues.
+
+When strangers try to use your software and fail, they tell you about it in exact, reproducible detail. They're not being polite. They're not trying to spare your feelings. They just need the thing to work, and they describe precisely what's broken.
+
+This feedback loop doesn't exist when you're building internal tools. It doesn't exist when you're building for a client. It's the thing that makes open source unusually good at teaching you to think from someone else's perspective — which is, ultimately, the most important skill in software.

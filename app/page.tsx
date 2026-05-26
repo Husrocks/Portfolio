@@ -1,61 +1,56 @@
-"use client"
-
-import { useEffect, useState } from "react"
-import Navigation from "@/components/navigation"
-import Hero from "@/components/sections/hero"
-import About from "@/components/sections/about"
-import Projects from "@/components/sections/projects"
-import Skills from "@/components/sections/skills"
-import Resume from "@/components/sections/resume"
-import Contact from "@/components/sections/contact"
-import Footer from "@/components/footer"
-import LoadingScreen from "@/components/ui/loading-screen"
-import SplashCursor from "@/components/ui/splash-cursor"
+import Hero from "@/components/sections/Hero"
+import Work from "@/components/sections/Work"
+import OpenSource from "@/components/sections/OpenSource"
+import TechStack from "@/components/sections/TechStack"
+import Community from "@/components/sections/Community"
+import ProblemStatement from "@/components/sections/ProblemStatement"
+import Services from "@/components/sections/Services"
+import Testimonials from "@/components/sections/Testimonials"
+import Stats from "@/components/sections/Stats"
+import About from "@/components/sections/About"
+import Writing from "@/components/sections/Writing"
+import FeaturedProject from "@/components/sections/FeaturedProject"
+import Contact from "@/components/sections/Contact"
+import { Header } from "@/components/layout/Header"
+import { Footer } from "@/components/layout/Footer"
+import { ScrollProgress } from "@/components/layout/ScrollProgress"
+import { CustomCursor } from "@/components/layout/CustomCursor"
+import { getRecentPosts } from "@/lib/mdx"
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    console.log("Page loaded, setting loading to false")
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 1000)
-
-    return () => clearTimeout(timer)
-  }, [])
-
-  if (isLoading) {
-    return <LoadingScreen />
-  }
-
+  const recentPosts = getRecentPosts(4)
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
-      <SplashCursor />
-      <Navigation />
-      <main className="relative">
-        {/* Background gradient for seamless flow */}
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-background/95"></div>
-        
-        <section id="home" className="relative z-10">
-          <Hero />
-        </section>
-        <section id="about" className="relative z-10">
-          <About />
-        </section>
-        <section id="projects" className="relative z-10">
-          <Projects />
-        </section>
-        <section id="skills" className="relative z-10">
-          <Skills />
-        </section>
-        <section id="resume" className="relative z-10">
-          <Resume />
-        </section>
-        <section id="contact" className="relative z-10">
-          <Contact />
-        </section>
+    <>
+      <CustomCursor />
+      <ScrollProgress />
+      <Header />
+      <main id="main-content">
+        {/* 01 — Hero (Light) */}
+        <Hero />
+        {/* 02 — Work (Dark) */}
+        <Work />
+        {/* 03 — Open Source (Light) */}
+        <OpenSource />
+        <TechStack />
+        <Community />
+        {/* 04 — Problem Statement (Dark) */}
+        <ProblemStatement />
+        {/* 05 — Services (Light) */}
+        <Services />
+        {/* 06 — Testimonials (Dark) */}
+        <Testimonials />
+        {/* 07 — Stats (Light) */}
+        <Stats />
+        {/* 08 — About (Dark) */}
+        <About />
+        {/* 09 — Writing (Light) */}
+        <Writing posts={recentPosts} />
+        {/* 10 — Featured Project (Dark) */}
+        <FeaturedProject />
+        {/* 11 — Contact (Light) */}
+        <Contact />
       </main>
       <Footer />
-    </div>
+    </>
   )
 }

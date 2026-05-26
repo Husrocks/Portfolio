@@ -1,359 +1,189 @@
 "use client"
 
-import { motion, useMotionValue, useTransform, animate } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Code, Coffee, Award, Heart, GraduationCap, Briefcase, Sparkles, User, BookOpen, Zap } from "lucide-react"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { motion, useScroll, useTransform } from "framer-motion"
+import { SlideIn } from "@/components/ui/SlideIn"
+import { FadeIn } from "@/components/ui/FadeIn"
+import { useRef } from "react"
+
+const CLIENT_LOGOS = [
+  "Meridian Capital", "Volta Energy", "Harlow Magazine",
+  "Arc Studio", "Vantage Goods", "Cascade Systems",
+  "Meridian Capital", "Volta Energy", "Harlow Magazine",
+  "Arc Studio", "Vantage Goods", "Cascade Systems",
+]
 
 export default function About() {
-  const [isStatsInView, setIsStatsInView] = useState(false)
+  const philosophyRef = useRef<HTMLDivElement>(null)
   
-  const skills = [
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
-    "Python",
-    "PostgreSQL",
-    "MongoDB",
-    "AWS",
-    "Docker",
-    "GraphQL",
-    "Tailwind CSS",
-    "Express.js",
-    "WordPress",
-    "Blockchain",
-  ]
-
-  const stats = [
-    { icon: Code, label: "Lines of Code", value: 100, suffix: "K+", color: "text-blue-400" },
-    { icon: Coffee, label: "Cups of Coffee", value: 2500, suffix: "+", color: "text-amber-400" },
-    { icon: Award, label: "Awards Won", value: 15, suffix: "+", color: "text-yellow-400" },
-    { icon: Heart, label: "Happy Clients", value: 30, suffix: "+", color: "text-red-400" },
-  ]
-
-  // Animated Counter Component
-  const AnimatedCounter = ({ value, suffix = "", duration = 2 }: { value: number; suffix?: string; duration?: number }) => {
-    const count = useMotionValue(0)
-    const rounded = useTransform(count, (latest) => Math.round(latest))
-    const display = useTransform(rounded, (latest) => `${latest}${suffix}`)
-
-    useEffect(() => {
-      if (isStatsInView) {
-        const controls = animate(count, value, { duration })
-        return controls.stop
-      }
-    }, [isStatsInView, value, count, duration])
-
-    return <motion.span className="text-2xl font-bold text-foreground">{display}</motion.span>
-  }
+  const { scrollYProgress } = useScroll({
+    target: philosophyRef,
+    offset: ["start end", "end center"]
+  })
+  
+  // Continuous border pulse mapped to scroll
+  const borderOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.2, 1, 0.2])
 
   return (
-    <section id="about" className="py-16 relative overflow-hidden">
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            About <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">Me</span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-emerald-400 mx-auto mb-6 rounded-full"></div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            A passionate Full Stack Developer with expertise in modern web technologies and a drive to create innovative solutions.
+    <section
+      id="about"
+      className="dark-section py-24 md:py-32"
+      style={{ backgroundColor: "#111110", color: "#E8E4DC" }}
+    >
+      <div className="content-grid">
+        {/* Section Label */}
+        <SlideIn from="left">
+          <p className="section-label mb-14" style={{ color: "var(--fg-muted)" }}>
+            [ 08 — About ]
           </p>
-        </motion.div>
+        </SlideIn>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content - Image */}
-          <motion.div
-            initial={{ opacity: 0, x: -50, scale: 0.9 }}
-            whileInView={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
-            whileHover={{ 
-              scale: 1.02,
-              transition: { duration: 0.3 }
-            }}
-            className="relative"
-          >
-            <motion.div 
-              className="relative w-full h-96 rounded-2xl overflow-hidden shadow-2xl glass-card border border-white/20 hover:border-white/40 transition-all duration-300"
-              whileHover={{ 
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
-                transition: { duration: 0.3 }
+        {/* Two-column layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-[40%_1fr] gap-14 lg:gap-16 mb-20">
+          {/* Portrait */}
+          <div className="relative">
+            <div
+              className="relative overflow-hidden rounded-[2px] w-full"
+              style={{
+                height: "500px",
+                maxWidth: "380px",
+                border: "2px solid var(--accent)",
+                boxShadow: "8px 8px 0 var(--accent)",
               }}
             >
-              <img
-                src={process.env.NODE_ENV === 'production' ? '/Portfolio/images/about-photo.jpg' : '/images/about-photo.jpg'}
-                alt="Hussnain Bashir - Full Stack Developer"
-                className="w-full h-full object-cover object-center"
+              <Image
+                src="/images/portrait.jpg"
+                alt="Alex Reyes — creative technologist and design engineer"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 768px) 80vw, 380px"
               />
-              <motion.div 
-                className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"
-                whileHover={{ 
-                  background: "linear-gradient(to top, rgba(0,0,0,0.4), transparent)",
-                  transition: { duration: 0.3 }
-                }}
-              />
-            </motion.div>
-            <motion.div 
-              className="absolute -bottom-6 -right-6 glass-card border border-white/20 text-white p-4 rounded-lg shadow-lg"
-              initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-              whileHover={{ 
-                scale: 1.1,
-                rotate: 5,
-                y: -5,
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.5)",
-                transition: { duration: 0.3 }
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="cursor-pointer"
-            >
-              <motion.div
-                whileHover={{ 
-                  scale: 1.05,
-                  y: -2,
-                  transition: { duration: 0.3 }
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="cursor-pointer"
-              >
-                <div className="text-2xl font-bold text-blue-400">2+</div>
-                <div className="text-sm text-muted-foreground">Years of Experience</div>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-
-          {/* Right Content - Text */}
-          <motion.div
-            initial={{ opacity: 0, x: 50, y: 20 }}
-            whileInView={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-2xl font-bold text-foreground mb-4">
-                Crafting Digital Experiences
-              </h3>
-              <motion.p 
-                className="text-muted-foreground leading-relaxed mb-6"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                viewport={{ once: true }}
-              >
-                I'm a dedicated Full Stack Developer with a passion for creating exceptional digital experiences. 
-                With expertise in both frontend and backend technologies, I bring ideas to life through clean, 
-                efficient, and scalable code.
-              </motion.p>
-              <motion.p 
-                className="text-muted-foreground leading-relaxed mb-6"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                viewport={{ once: true }}
-              >
-                My journey in web development started with a curiosity about how things work on the internet. 
-                Today, I specialize in React, Next.js, Node.js, and modern cloud technologies, always staying 
-                up-to-date with the latest industry trends and best practices.
-              </motion.p>
-              <motion.p 
-                className="text-muted-foreground leading-relaxed"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-                viewport={{ once: true }}
-              >
-                When I'm not coding, you'll find me exploring new technologies, contributing to open-source 
-                projects, or sharing knowledge with the developer community through blog posts and mentoring.
-              </motion.p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                viewport={{ once: true }}
-                whileHover={{ 
-                  scale: 1.02,
-                  y: -5,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <Card className="glass-card border border-white/20 hover:border-white/40 transition-all duration-300">
-                  <CardContent className="p-4 flex items-start space-x-4">
-                    <motion.div
-                      whileHover={{ 
-                        scale: 1.1,
-                        rotate: 5,
-                        transition: { duration: 0.3 }
-                      }}
-                    >
-                      <GraduationCap className="w-6 h-6 text-blue-400 mt-1 flex-shrink-0" />
-                    </motion.div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">Education</h4>
-                      <p className="text-sm text-muted-foreground">
-                        B.S. Computer Science
-                        <br />
-                        Institute for Art and Culture
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                viewport={{ once: true }}
-                whileHover={{ 
-                  scale: 1.02,
-                  y: -5,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <Card className="glass-card border border-white/20 hover:border-white/40 transition-all duration-300">
-                  <CardContent className="p-4 flex items-start space-x-4">
-                    <motion.div
-                      whileHover={{ 
-                        scale: 1.1,
-                        rotate: 5,
-                        transition: { duration: 0.3 }
-                      }}
-                    >
-                      <Briefcase className="w-6 h-6 text-emerald-400 mt-1 flex-shrink-0" />
-                    </motion.div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">Experience</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Full Stack Developer
-                        <br />
-                        2+ Years Experience
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
             </div>
-          </motion.div>
+          </div>
+
+          {/* Bio */}
+          <div>
+            {/* Opening line */}
+            <FadeIn delay={0.2}>
+              <p
+                className="mb-6"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(1.375rem, 2.5vw, 1.75rem)",
+                  fontStyle: "italic",
+                  fontWeight: 700,
+                  lineHeight: 1.35,
+                  letterSpacing: "-0.01em",
+                  color: "#E8E4DC",
+                }}
+              >
+                Nine years ago, I took a risk and designed my first brand identity on a borrowed MacBook in a coffee shop in Barcelona.
+              </p>
+            </FadeIn>
+
+            <FadeIn delay={0.3}>
+              <div
+                className="space-y-4 text-[var(--fg-muted)]"
+                style={{ fontFamily: "var(--font-body)", fontSize: "1.0625rem", lineHeight: 1.8 }}
+              >
+                <p>
+                  That first client was a small restaurant that needed a logo. What they got was something I&apos;d spent three weeks obsessing over — and it taught me something I&apos;ve never forgotten: people can feel when someone actually cared. They don&apos;t always know why they trust a brand or why a product feels right, but they know when something was made with intention.
+                </p>
+                <p>
+                  Today I work with startups, scale-ups, and independent creative businesses who are ready to stop playing it safe visually. My process is equal parts strategy and making — I don&apos;t hand off to a developer or a copywriter. I think through the positioning, design the system, write the words, and build the product. That&apos;s not for everyone. For the right clients, it&apos;s everything.
+                </p>
+                <p>
+                  When I&apos;m not working, I&apos;m usually hiking the coast, cooking something that takes too long, or reading about architecture, type history, and the intersection of technology and culture. I live in San Francisco and work with clients globally.
+                </p>
+              </div>
+            </FadeIn>
+
+            {/* Philosophy callout */}
+            <motion.div
+              ref={philosophyRef}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mt-8 p-5 rounded-[2px]"
+              style={{
+                backgroundColor: "var(--surface)",
+                borderLeft: "3px solid",
+                borderColor: `rgba(212,149,42,${borderOpacity.get()})`, // Dynamically driven by useScroll if needed, but we'll use motion style
+              }}
+            >
+              <motion.div style={{ opacity: borderOpacity }}>
+                <p
+                  className="text-[var(--fg)]"
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "1rem",
+                    fontStyle: "italic",
+                    lineHeight: 1.65,
+                  }}
+                >
+                  &ldquo;The best creative work isn&apos;t made by choosing between thinking and making. It&apos;s made by people who refuse to separate them.&rdquo;
+                </p>
+              </motion.div>
+            </motion.div>
+
+            {/* Currently open to */}
+            <FadeIn delay={0.5}>
+              <div className="mt-6 flex flex-wrap gap-2">
+                <span
+                  className="text-[var(--fg-muted)]"
+                  style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase" }}
+                >
+                  Currently open to:
+                </span>
+                <span
+                  className="text-[var(--fg)]"
+                  style={{ fontFamily: "var(--font-body)", fontSize: "0.9375rem" }}
+                >
+                  Fractional engagements, brand identity projects, product builds
+                </span>
+              </div>
+            </FadeIn>
+          </div>
         </div>
 
-        {/* Stats Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="mt-16"
-          onViewportEnter={() => setIsStatsInView(true)}
-        >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ 
-                  scale: 1.05,
-                  y: -8,
-                  transition: { duration: 0.3 }
-                }}
-                className="text-center group cursor-pointer"
-              >
-                <motion.div 
-                  className={`w-16 h-16 mx-auto mb-4 rounded-full glass-card border border-white/20 flex items-center justify-center ${stat.color} group-hover:border-white/40 transition-all duration-300`}
-                  whileHover={{ 
-                    scale: 1.2,
-                    rotate: 10,
-                    transition: { duration: 0.3 }
-                  }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <stat.icon className="w-8 h-8" />
-                </motion.div>
-                <motion.div 
-                  className="mb-2"
-                  whileHover={{ 
-                    scale: 1.05,
-                    transition: { duration: 0.2 }
+        {/* Client logo marquee */}
+        <FadeIn delay={0.2}>
+          <div
+            className="overflow-hidden pt-12 relative"
+            style={{ 
+              borderTop: "1px solid var(--border)",
+              maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+              WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)"
+            }}
+            role="region"
+            aria-label="Clients"
+          >
+            <p
+              className="section-label mb-7"
+              style={{ color: "var(--fg-muted)" }}
+            >
+              Clients &amp; Collaborators
+            </p>
+            <div className="marquee-track-slow flex" aria-hidden="true">
+              {CLIENT_LOGOS.map((name, i) => (
+                <div
+                  key={`${name}-${i}`}
+                  className="mx-8 shrink-0 transition-all duration-500 hover:opacity-100 opacity-30 grayscale hover:grayscale-0 hover:text-[var(--accent)]"
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "1.125rem",
+                    fontWeight: 600,
+                    letterSpacing: "-0.01em",
+                    whiteSpace: "nowrap",
                   }}
                 >
-                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                </motion.div>
-                <motion.div 
-                  className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300"
-                  whileHover={{ 
-                    scale: 1.02,
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  {stat.label}
-                </motion.div>
-              </motion.div>
-            ))}
+                  {name}
+                </div>
+              ))}
+            </div>
           </div>
-        </motion.div>
-
-        {/* Skills Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-16"
-        >
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <BookOpen className="w-6 h-6 text-blue-400" />
-            <h3 className="text-2xl font-bold text-foreground text-center">
-              Technologies I Work With
-            </h3>
-            <Zap className="w-6 h-6 text-emerald-400" />
-          </div>
-          <div className="flex flex-wrap justify-center gap-3">
-            {skills.map((skill, index) => (
-              <motion.div
-                key={skill}
-                initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                whileHover={{ 
-                  scale: 1.1,
-                  y: -3,
-                  transition: { duration: 0.2 }
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Badge 
-                  variant="secondary" 
-                  className="glass-card border border-white/20 text-foreground hover:bg-white/10 hover:border-white/40 transition-all duration-300 text-sm px-3 py-1 cursor-pointer"
-                >
-                  {skill}
-                </Badge>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        </FadeIn>
       </div>
     </section>
   )
