@@ -14,6 +14,7 @@ const nextConfig = {
     remotePatterns: [],
   },
   output: "export",
+  basePath: "/Portfolio",
   experimental: {
     esmExternals: false,
   },
