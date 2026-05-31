@@ -88,6 +88,7 @@ export const projects: Project[] = [
       "A high-performance, single-page gym landing page built with Next.js, React, Tailwind CSS, and Framer Motion — delivering premium animations and a bold visual identity.",
     featured: false,
     nextProject: "ai-campus-management",
+    link: "https://husrocks.github.io/Oxygen-2.0/",
   },
 ]
 
