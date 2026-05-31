@@ -13,7 +13,7 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [],
   },
-  // Removed `output: 'export'` — required for API routes, dynamic routes, and RSS feed
+  output: "export",
   experimental: {
     esmExternals: false,
   },

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server"
+import type { NextApiRequest, NextApiResponse } from "next"
 import { z } from "zod"
 import nodemailer from "nodemailer"
 
@@ -12,21 +12,22 @@ const contactSchema = z.object({
   website: z.string().optional(), // honeypot
 })
 
-export async function POST(request: Request) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" })
+  }
+
   try {
-    const body = await request.json()
+    const body = req.body
 
     // Honeypot check
     if (body.website) {
-      return NextResponse.json({ success: true }) // silent discard
+      return res.status(200).json({ success: true }) // silent discard
     }
 
     const parsed = contactSchema.safeParse(body)
     if (!parsed.success) {
-      return NextResponse.json(
-        { error: parsed.error.issues[0]?.message ?? "Invalid form data" },
-        { status: 400 }
-      )
+      return res.status(400).json({ error: parsed.error.issues[0]?.message ?? "Invalid form data" })
     }
 
     const data = parsed.data
@@ -34,7 +35,7 @@ export async function POST(request: Request) {
     // Check SMTP config
     if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
       console.warn("SMTP not configured — contact form submission received but not sent")
-      return NextResponse.json({ success: true }) // Graceful fallback
+      return res.status(200).json({ success: true }) // Graceful fallback
     }
 
     const transporter = nodemailer.createTransport({
@@ -48,7 +49,7 @@ export async function POST(request: Request) {
     })
 
     await transporter.sendMail({
-      from: `"Alex Reyes Portfolio" <${process.env.SMTP_USER}>`,
+      from: `"Hussnain Bashir Portfolio" <${process.env.SMTP_USER}>`,
       to: process.env.CONTACT_EMAIL ?? process.env.SMTP_USER,
       replyTo: data.email,
       subject: `New inquiry: ${data.projectType} from ${data.name}${data.company ? ` at ${data.company}` : ""}`,
@@ -70,12 +71,9 @@ export async function POST(request: Request) {
       `,
     })
 
-    return NextResponse.json({ success: true })
+    return res.status(200).json({ success: true })
   } catch (error) {
     console.error("Contact form error:", error)
-    return NextResponse.json(
-      { error: "Failed to send message. Please try emailing directly." },
-      { status: 500 }
-    )
+    return res.status(500).json({ error: "Failed to send message. Please try emailing directly." })
   }
 }
