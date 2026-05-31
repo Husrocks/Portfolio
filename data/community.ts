@@ -17,9 +17,9 @@ export const communityRoles: CommunityRole[] = [
     organization: "ByteCamp at LGU",
     description:
       "Representing ByteCamp at Lahore Garrison University, fostering community engagement, and organizing tech initiatives to bridge the gap between students and the tech industry.",
-    coverImage: "/images/community/bytecamp.jpg",
+    coverImage: "/Portfolio/images/community/bytecamp.jpg",
     images: [
-      { src: "/images/community/bytecamp.jpg", alt: "Students collaborating at a ByteCamp tech event" },
+      { src: "/Portfolio/images/community/bytecamp.jpg", alt: "Students collaborating at a ByteCamp tech event" },
     ],
     learnings: [
       "Leadership and team management by organizing campus-wide technical events.",
@@ -34,9 +34,9 @@ export const communityRoles: CommunityRole[] = [
     organization: "DevFest & GDG Workshops",
     description:
       "Actively involved in Google Developer Groups (GDG) and DevFest events, participating in workshops, networking with industry professionals, and continuously learning emerging technologies.",
-    coverImage: "/images/community/devfest.jpg",
+    coverImage: "/Portfolio/images/community/devfest.jpg",
     images: [
-      { src: "/images/community/devfest.jpg", alt: "Speaker presenting at a GDG DevFest conference" },
+      { src: "/Portfolio/images/community/devfest.jpg", alt: "Speaker presenting at a GDG DevFest conference" },
     ],
     learnings: [
       "Exposure to cutting-edge web and cloud technologies directly from Google Developer Experts.",

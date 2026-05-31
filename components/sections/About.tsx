@@ -52,7 +52,7 @@ export default function About() {
               }}
             >
               <Image
-                src="/images/hussnain.png"
+                src="/Portfolio/images/hussnain.png"
                 alt="Hussnain Bashir — creative technologist and design engineer"
                 fill
                 className="object-cover object-center"

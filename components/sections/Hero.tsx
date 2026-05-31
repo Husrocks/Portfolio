@@ -8,7 +8,7 @@ import { SlideIn } from "@/components/ui/SlideIn"
 import { ArrowRight, ChevronDown } from "lucide-react"
 
 const HERO_IMAGES = [
-  { src: "/images/hero-mosaic.png", alt: "Creative Direction & Engineering" }
+  { src: "/Portfolio/images/hero-mosaic.png", alt: "Creative Direction & Engineering" }
 ]
 
 const CURRENTLY_ITEMS = [

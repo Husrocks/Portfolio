@@ -29,7 +29,7 @@ export default function FeaturedProject() {
       {/* Background image with gradient overlay */}
       <div className="absolute inset-0" aria-hidden="true">
         <motion.img
-          src="/images/projects/ai-campus.jpg"
+          src="/Portfolio/images/projects/ai-campus.jpg"
           alt=""
           style={{ scale, objectFit: "cover", width: "100%", height: "100%" }}
         />
