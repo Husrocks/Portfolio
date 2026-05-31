@@ -124,7 +124,7 @@ export function Header() {
                 transition: "color 0.3s ease",
               }}
             >
-              Alex Reyes
+              Imhussnain
             </Link>
 
             {/* Desktop Nav */}

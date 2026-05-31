@@ -12,7 +12,7 @@ const variants = {
 
 export function PageTransition({ children }: { children: ReactNode }) {
   const pathname = usePathname()
-  
+
   return (
     <>
       <AnimatePresence mode="wait">
@@ -30,7 +30,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
             animate={{ opacity: [0, 1, 1, 0] }}
             transition={{ times: [0, 0.3, 0.7, 1], duration: 0.9 }}
           >
-            Alex Reyes
+            Imhussnain
           </motion.span>
         </motion.div>
       </AnimatePresence>

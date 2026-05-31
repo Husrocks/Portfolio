@@ -13,7 +13,7 @@ const HERO_IMAGES = [
 
 const CURRENTLY_ITEMS = [
   { label: "Role", value: "Open to Offers" },
-  { label: "Base", value: "San Francisco" },
+  { label: "Base", value: "Lahore, Pakistan" },
   { label: "Building", value: "atlas-ui v2" },
   { label: "Reading", value: "The Shape of Things" },
 ]
@@ -28,7 +28,7 @@ export default function Hero() {
   const { scrollYProgress } = useScroll()
   const textY = useTransform(scrollYProgress, [0, 0.25], ["0%", "-30%"])
   const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
-  
+
   // Fade out chevron on scroll
   const chevronOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0])
 
@@ -41,7 +41,7 @@ export default function Hero() {
       className="relative min-h-screen flex items-center overflow-hidden"
     >
       {/* Ken Burns mosaic — Right side */}
-      <motion.div 
+      <motion.div
         className="hidden lg:block absolute inset-0 pointer-events-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -51,7 +51,7 @@ export default function Hero() {
       </motion.div>
 
       {/* Left content */}
-      <motion.div 
+      <motion.div
         className="content-grid w-full relative z-10 py-32 pt-36"
         style={{ y: textY, opacity: textOpacity }}
       >
@@ -76,20 +76,20 @@ export default function Hero() {
               color: "var(--fg)",
             }}
           >
-            <RevealText 
-              text="Design that thinks." 
-              tag="span" 
-              className="italic font-bold block" 
-              delay={0.5} 
-              stagger={0.06} 
+            <RevealText
+              text="Design that thinks."
+              tag="span"
+              className="italic font-bold block"
+              delay={0.5}
+              stagger={0.06}
               animateOnLoad
             />
-            <RevealText 
-              text="Code that feels." 
-              tag="span" 
-              className="font-normal block opacity-80" 
-              delay={0.9} 
-              stagger={0.06} 
+            <RevealText
+              text="Code that feels."
+              tag="span"
+              className="font-normal block opacity-80"
+              delay={0.9}
+              stagger={0.06}
               animateOnLoad
             />
           </h1>
@@ -107,7 +107,7 @@ export default function Hero() {
           </motion.p>
 
           {/* CTA Buttons */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -128,7 +128,7 @@ export default function Hero() {
             >
               View My Work
             </motion.button>
-            
+
             <motion.button
               whileHover={{ scale: 1.03, borderWidth: "1.5px" }}
               whileTap={{ scale: 0.97 }}
@@ -142,8 +142,8 @@ export default function Hero() {
               }}
               data-cursor-expand
             >
-              Book a Call 
-              <motion.span 
+              Book a Call
+              <motion.span
                 className="inline-block ml-1"
                 variants={{ hover: { x: 6 } }}
               >
@@ -158,7 +158,7 @@ export default function Hero() {
             style={{ borderColor: "var(--border)" }}
           >
             {CURRENTLY_ITEMS.map((item, index) => (
-              <motion.div 
+              <motion.div
                 key={item.label}
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}

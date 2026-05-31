@@ -22,7 +22,7 @@ export async function generateMetadata({
   const item = communityRoles.find((c) => c.slug === params.slug)
   if (!item) return {}
   return {
-    title: `${item.title} — Alex Reyes`,
+    title: `${item.title} — Hussnain Bashir`,
     description: item.description,
   }
 }
@@ -106,7 +106,7 @@ export default function CommunityPage({ params }: { params: { slug: string } }) 
         {/* Content area: What I learned + Gallery */}
         <div className="section-light py-16 md:py-24" style={{ backgroundColor: "#F4F1EC" }}>
           <div className="content-grid">
-            
+
             <FadeUp>
               <h2
                 className="mb-8"
@@ -121,7 +121,7 @@ export default function CommunityPage({ params }: { params: { slug: string } }) 
               >
                 What I Learned
               </h2>
-              
+
               <ul className="space-y-4 mb-16 max-w-[720px]">
                 {item.learnings.map((learning, i) => (
                   <li key={i} className="flex gap-4 items-start">
@@ -153,7 +153,7 @@ export default function CommunityPage({ params }: { params: { slug: string } }) 
                 ))}
               </div>
             </FadeUp>
-            
+
           </div>
         </div>
       </main>

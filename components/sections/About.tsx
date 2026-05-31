@@ -15,12 +15,12 @@ const CLIENT_LOGOS = [
 
 export default function About() {
   const philosophyRef = useRef<HTMLDivElement>(null)
-  
+
   const { scrollYProgress } = useScroll({
     target: philosophyRef,
     offset: ["start end", "end center"]
   })
-  
+
   // Continuous border pulse mapped to scroll
   const borderOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.2, 1, 0.2])
 
@@ -52,8 +52,8 @@ export default function About() {
               }}
             >
               <Image
-                src="/images/portrait.jpg"
-                alt="Alex Reyes — creative technologist and design engineer"
+                src="/images/hussnain.png"
+                alt="Hussnain Bashir — creative technologist and design engineer"
                 fill
                 className="object-cover object-center"
                 sizes="(max-width: 768px) 80vw, 380px"
@@ -77,7 +77,7 @@ export default function About() {
                   color: "#E8E4DC",
                 }}
               >
-                Nine years ago, I took a risk and designed my first brand identity on a borrowed MacBook in a coffee shop in Barcelona.
+                Three years ago, I opened my laptop with an idea and a lot of curiosity turning lines of code into real products, one project, one late night, and one bold experiment at a time.
               </p>
             </FadeIn>
 
@@ -87,13 +87,13 @@ export default function About() {
                 style={{ fontFamily: "var(--font-body)", fontSize: "1.0625rem", lineHeight: 1.8 }}
               >
                 <p>
-                  That first client was a small restaurant that needed a logo. What they got was something I&apos;d spent three weeks obsessing over — and it taught me something I&apos;ve never forgotten: people can feel when someone actually cared. They don&apos;t always know why they trust a brand or why a product feels right, but they know when something was made with intention.
+                  I’m an independent developer who builds full-stack applications, and I run my own design practice, creating brands, visuals, and systems for clients who want work that feels intentional, considered, and made with care.
                 </p>
                 <p>
-                  Today I work with startups, scale-ups, and independent creative businesses who are ready to stop playing it safe visually. My process is equal parts strategy and making — I don&apos;t hand off to a developer or a copywriter. I think through the positioning, design the system, write the words, and build the product. That&apos;s not for everyone. For the right clients, it&apos;s everything.
+                  I don’t believe in one-size-fits-all. My approach changes with every project. Some clients need a brand that feels timeless and grounded. Others need something experimental, digital-first, and fast. Most need a blend of both — strategy that’s sharp, design that’s considered, and code that actually works the way it’s supposed to.
                 </p>
                 <p>
-                  When I&apos;m not working, I&apos;m usually hiking the coast, cooking something that takes too long, or reading about architecture, type history, and the intersection of technology and culture. I live in San Francisco and work with clients globally.
+                  I’m based in Lahore and work with clients globally. If you’re looking for a partner who can think strategically, execute precisely, and move as fast as you do, we should talk.
                 </p>
               </div>
             </FadeIn>
@@ -140,7 +140,7 @@ export default function About() {
                   className="text-[var(--fg)]"
                   style={{ fontFamily: "var(--font-body)", fontSize: "0.9375rem" }}
                 >
-                  Fractional engagements, brand identity projects, product builds
+                  AI & ML Development, Full-stack Development, UI/UX Design, Shopiy Development, WordPress Development
                 </span>
               </div>
             </FadeIn>
@@ -151,7 +151,7 @@ export default function About() {
         <FadeIn delay={0.2}>
           <div
             className="overflow-hidden pt-12 relative"
-            style={{ 
+            style={{
               borderTop: "1px solid var(--border)",
               maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
               WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)"

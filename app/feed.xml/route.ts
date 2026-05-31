@@ -1,20 +1,20 @@
-import { getAllPosts } from "@/lib/mdx"
+import { getAllPosts, Post } from "@/lib/mdx"
 import { NextResponse } from "next/server"
 
 export async function GET() {
-  let posts = []
+  let posts: Post[] = []
   try {
     posts = getAllPosts()
-  } catch {}
+  } catch { }
 
   const baseUrl = "https://alexreyes.design"
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Alex Reyes — Writing</title>
+    <title>Hussnain Bashir — Writing</title>
     <link>${baseUrl}</link>
-    <description>Essays and technical writing on design, engineering, and creative practice by Alex Reyes.</description>
+    <description>Essays and technical writing on design, engineering, and creative practice by Hussnain Bashir.</description>
     <language>en-us</language>
     <atom:link href="${baseUrl}/feed.xml" rel="self" type="application/rss+xml"/>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>

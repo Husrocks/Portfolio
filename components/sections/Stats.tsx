@@ -5,7 +5,7 @@ import { CountUp } from "@/components/ui/CountUp"
 import { motion } from "framer-motion"
 
 const STATS = [
-  { target: 9, suffix: "+", label: "Years of Practice" },
+  { target: 3, suffix: "+", label: "Years of Practice" },
   { target: 80, suffix: "+", label: "Projects Delivered" },
   { target: 40, suffix: "+", label: "Satisfied Clients" },
   { target: 12, suffix: "", label: "Open Source Projects" },

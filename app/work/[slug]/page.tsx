@@ -22,7 +22,7 @@ export async function generateMetadata({
   const project = projects.find((p) => p.slug === params.slug)
   if (!project) return {}
   return {
-    title: `${project.title} — Alex Reyes`,
+    title: `${project.title} — Hussnain Bashir`,
     description: project.description,
   }
 }
@@ -113,7 +113,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
                       </p>
                     </div>
                   ))}
-                  
+
                   {project.link && (
                     <div className="pt-2">
                       <a

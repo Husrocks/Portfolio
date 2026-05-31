@@ -275,7 +275,7 @@ export default function Contact() {
                         <input
                           id="name"
                           {...register("name")}
-                          placeholder="Alex Chen"
+                          placeholder="Hussnain Bashir"
                           style={inputBase}
                           onFocus={(e) => (e.target.style.borderColor = "var(--accent)")}
                           onBlur={(e) => (e.target.style.borderColor = "var(--border)")}
@@ -468,14 +468,14 @@ export default function Contact() {
         <FadeUp delay={0.25}>
           <div className="flex flex-wrap gap-6 items-center">
             <a
-              href="mailto:hello@alexreyes.design"
+              href="mailto:[EMAIL_ADDRESS]"
               className="text-sm text-[var(--fg-muted)] hover:text-[var(--accent)] transition-colors duration-200 hover-underline-amber"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              hello@alexreyes.design
+              [zurqulnan@gmail.com]
             </a>
             <a
-              href="https://linkedin.com/in/alexreyes"
+              href="https://linkedin.com/in/hussnain-bashir"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-[var(--fg-muted)] hover:text-[var(--accent)] transition-colors duration-200 hover-underline-amber"
@@ -484,7 +484,7 @@ export default function Contact() {
               LinkedIn
             </a>
             <a
-              href="https://github.com/alexreyes"
+              href="https://github.com/Husrocks"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-[var(--fg-muted)] hover:text-[var(--accent)] transition-colors duration-200 hover-underline-amber"

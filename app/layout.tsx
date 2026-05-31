@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { Cormorant_Garamond, Syne, JetBrains_Mono } from "next/font/google"
 import type React from "react"
 import { CustomCursor } from "@/components/layout/CustomCursor"
@@ -29,11 +30,11 @@ const monoFont = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Alex Reyes — Creative Technologist & Design Engineer",
-    template: "%s | Alex Reyes",
+    default: "Hussnain Bashir — Creative Technologist & Design Engineer",
+    template: "%s | Hussnain Bashir",
   },
   description:
-    "Senior creative technologist and independent design engineer with 9 years of experience at the intersection of visual craft and engineering excellence. Available for consulting, fractional creative direction, and select projects.",
+    "Senior creative technologist and independent design engineer with 3 years of experience at the intersection of visual craft and engineering excellence. Available for consulting, fractional creative direction, and select projects.",
   keywords: [
     "creative technologist",
     "design engineer",
@@ -43,31 +44,31 @@ export const metadata: Metadata = {
     "UX",
     "freelance",
   ],
-  authors: [{ name: "Alex Reyes" }],
-  creator: "Alex Reyes",
+  authors: [{ name: "Hussnain Bashir" }],
+  creator: "Hussnain Bashir",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://alexreyes.design",
-    siteName: "Alex Reyes",
-    title: "Alex Reyes — Creative Technologist & Design Engineer",
+    url: "https://hussnainbashir.design",
+    siteName: "Hussnain Bashir",
+    title: "Hussnain Bashir — Creative Technologist & Design Engineer",
     description:
-      "Senior creative technologist with 9 years at the intersection of visual craft and engineering.",
+      "Senior creative technologist with 3 years at the intersection of visual craft and engineering.",
     images: [
       {
         url: "/og-default.png",
         width: 1200,
         height: 630,
-        alt: "Alex Reyes — Creative Technologist",
+        alt: "Hussnain Bashir — Creative Technologist",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alex Reyes — Creative Technologist & Design Engineer",
+    title: "Hussnain Bashir — Creative Technologist & Design Engineer",
     description:
-      "Senior creative technologist with 9 years at the intersection of visual craft and engineering.",
-    creator: "@alexreyes",
+      "Senior creative technologist with 3 years at the intersection of visual craft and engineering.",
+    creator: "@hussnainbashir",
   },
   robots: {
     index: true,
@@ -79,7 +80,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://alexreyes.design",
+    canonical: "https://hussnainbashir.design",
     types: {
       "application/rss+xml": "/feed.xml",
     },

@@ -14,7 +14,7 @@ interface CountUpProps {
 
 export function CountUp({ target, duration = 1200, suffix = "", className = "" }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true, margin: "-10%" })
+  const isInView = useInView(ref, { once: true, margin: "0px" })
   const value = useCountUp(target, duration, isInView)
   const isComplete = value === target
 

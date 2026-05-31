@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Github, Linkedin, Twitter, Rss, ArrowUp, Mail } from "lucide-react"
+import { Github, Linkedin, X, Rss, ArrowUp, Mail } from "lucide-react"
 
 const NAV_LINKS = [
   { label: "Work", href: "/#work" },
@@ -12,9 +12,9 @@ const NAV_LINKS = [
 ]
 
 const SOCIAL_LINKS = [
-  { label: "GitHub", href: "https://github.com/alexreyes", icon: Github },
-  { label: "LinkedIn", href: "https://linkedin.com/in/alexreyes", icon: Linkedin },
-  { label: "Twitter / X", href: "https://twitter.com/alexreyes", icon: Twitter },
+  { label: "GitHub", href: "https://github.com/Husrocks", icon: Github },
+  { label: "LinkedIn", href: "https://linkedin.com/in/hussnain-bashir", icon: Linkedin },
+  { label: "Twitter / X", href: "https://x.com/RocksHus", icon: X },
   { label: "RSS Feed", href: "/feed.xml", icon: Rss },
 ]
 
@@ -40,7 +40,7 @@ export function Footer() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Alex Reyes
+              Imhussnain
             </div>
             <p
               className="text-sm text-[var(--fg-muted)] leading-relaxed max-w-[220px]"
@@ -84,18 +84,18 @@ export function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="mailto:hello@alexreyes.design"
+                  href="mailto:zurqulnan@gmail.com"
                   className="text-sm text-[var(--fg-muted)] hover:text-[var(--accent)] transition-colors duration-200"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
-                  hello@alexreyes.design
+                  zurqulnan@gmail.com
                 </a>
               </li>
               <li
                 className="text-sm text-[var(--fg-muted)]"
                 style={{ fontFamily: "var(--font-mono)", fontSize: "11px" }}
               >
-                San Francisco, CA
+                Lahore, Pakistan
               </li>
               <li
                 className="text-sm"
@@ -151,7 +151,7 @@ export function Footer() {
             className="text-[11px] text-[var(--fg-muted)]"
             style={{ fontFamily: "var(--font-mono)" }}
           >
-            © {new Date().getFullYear()} Alex Reyes. All rights reserved.
+            © {new Date().getFullYear()} Imhussnain. All rights reserved.
           </p>
           <p
             className="text-[11px] text-[var(--fg-muted)]"
