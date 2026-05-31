@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useScroll, useTransform, motion, AnimatePresence } from "framer-motion"
 
 const NAV_LINKS = [
@@ -23,6 +23,7 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [isDarkSection, setIsDarkSection] = useState(false)
   const pathname = usePathname()
+  const router = useRouter()
   const { scrollY } = useScroll()
 
   // Background opacity on scroll
@@ -91,7 +92,7 @@ export function Header() {
         return
       }
     }
-    window.location.href = href
+    router.push(href)
   }
 
   return (
